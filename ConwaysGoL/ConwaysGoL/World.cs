@@ -3,13 +3,13 @@ using System.Text;
 
 namespace ConwaysGoL {
     internal class World {
-        private int[,] map { get; set; }
+        private int[,] map;
         private int width, height;
 
-        public World() { //Initialises the world with a width and height of 15.
-            this.width = 15;
-            this.height = 15;
-            map = new int[width, height];
+        public World(): this(15, 15) { //Initialises the world with a width and height of 15.
+            //this.width = 15;
+            //this.height = 15;
+            //map = new int[width, height];
         }
 
         public World(int width, int height) { //Initialises the world with width and height.
@@ -52,12 +52,10 @@ namespace ConwaysGoL {
              * is within the bounds of the map.
              */
 
-            for (int i = 0; i < 8; i++) { //
+            for (int i = 0; i < 8; i++) {
                 int nx = x + deltaX[i];
                 int ny = y + deltaY[i];
-                if (LegalX(nx) && LegalY(ny)) {
-                    count += map[nx, ny];
-                }
+                count += this[nx, ny];
             }
 
             return count;
